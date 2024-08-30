@@ -1,0 +1,350 @@
+/* styles.css */
+
+/* Allgemeine Stile */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: grid;
+    grid-gap: 0;
+    column-gap: 0;
+    justify-content: start;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    max-height: 100vh;
+    box-sizing: border-box;
+    font-size: 18px
+}
+
+/* Inhalt */
+.content {
+    box-sizing: border-box;
+    padding: 20px;
+    padding-bottom: 70px;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+
+/* Weitere Stile für Ihren Inhalt hier hinzufügen */
+.outer-container {
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid #a9a9a9;
+
+}
+.items-container {
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Versteckt die Scrollleiste in Webkit-Browsern (Chrome, Safari) */
+}
+.horizontal-scroll::before,
+.horizontal-scroll::after {
+    content: ''; /* Erforderlich für das Pseudo-Element */
+    position: absolute; /* Absolut positioniert */
+    top: 0; /* Am oberen Rand des Containers */
+    bottom: 0; /* Am unteren Rand des Containers */
+    width: 50px; /* Breite des Schattens */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* Verlauf für den Schatten */
+    pointer-events: none; /* Keine Interaktion mit dem Pseudo-Element */
+    display: none; /* Standardmäßig ausblenden */
+}
+.horizontal-scroll.overflow-left::before,
+.horizontal-scroll.overflow-right::after {
+    display: block; /* Schatten anzeigen, wenn der Container überläuft */
+}
+.horizontal-scroll.overflow-left::before {
+    left: 0; /* Schatten am linken Rand */
+}
+.horizontal-scroll.overflow-right::after {
+    right: 0; /* Schatten am rechten Rand */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* Verlauf für den Schatten */
+}
+
+.item-box {
+    min-width: 180px; /* Breite des Kastens anpassen */
+    width: 220px; /* Breite des Kastens anpassen */
+    height: 370px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc; /* Rand hinzufügen */
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.item-image {
+    width: 100%;
+    height: 250px; /* Höhe des Bildes anpassen */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.no-image-placeholder {
+    width: 100%;
+    height: 250px; /* Höhe des Platzhalters anpassen */
+    background-color: #f0f0f0; /* Hintergrundfarbe für Platzhalter festlegen */
+}
+
+.item-details {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.item-details h2,
+.item-details p {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.link-box {
+    margin: 5px;
+    padding: 0px;
+}
+
+.sublist {
+    margin-left: 20px; /* Einrückung der Unterliste anpassen */
+    font-size: 14px;
+}
+
+/* CSS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.price {
+    text-align: right;
+}
+
+.subtotal {
+    text-align: right;
+}
+
+.currency_cell {
+    text-align: right;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+.product-picture-large {
+    width: 100%;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.headline {
+    display: none; /* flex */
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: #126B16;
+    color: white;
+    align-items: center;
+}
+
+.logo {
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-row form {
+    margin: 0 10px; /* Abstand zwischen den Buttons anpassen */
+}
+
+.button-row button {
+    font-size: 18px;
+    padding: 10px 20px; /* Innenabstand der Buttons anpassen */
+}
+
+.cart-manipulation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus-button, .minus-button {
+    padding: 5px 15px;
+    margin: 0 5px;
+}
+
+.quantity {
+    min-width: 30px;
+    text-align: center;
+}
+
+.no-image-placeholder, .item-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    align: center;
+}
+
+/* Begin footer navigation */
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Höhe des Footers verwenden */
+}
+
+.footer-nav ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Hinzugefügt, um den Listenrand zu entfernen */
+}
+
+.footer-nav ul li {
+    display: inline;
+    margin: 0 10px; /* Abstand zwischen den Schaltflächen anpassen */
+}
+
+.rounded-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #565656; /* Standard Grau */
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 22px;
+}
+
+.top-nav .rounded-button {
+    background-color: #666666;
+}
+
+.top-nav .rounded-button:hover {
+    background-color: #909090;
+}
+
+.rounded-button:hover {
+    background-color: #7a7a7a; /* Dunkleres Grau im Hover-Zustand */
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 55px;  /* Höhe des Footers */
+    color: white;  /* Weiße Textfarbe */
+    text-align: center;  /* Zentriert den Text vertikal */
+    background: linear-gradient(to top, rgba(50, 50, 50, 255), rgba(50, 50, 50, 0));
+}
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    color: white;  /* Weiße Textfarbe */
+    text-align: center;  /* Zentriert den Text vertikal */
+    z-index: 1000;
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+}
+
+.top-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-nav ul {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0; /* Hinzugefügt, um den Listenrand zu entfernen */
+}
+
+.top-nav ul li {
+    display: inline;
+    margin: 0 10px; /* Abstand zwischen den Schaltflächen anpassen */
+}
+
+.total {
+    font-size: 24px;
+    text-align: center;
+}
+
+.filler {
+    min-width: 10px;
+    margin: 0 -10px;
+}
+
+.help-button {
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.help-button:hover {
+    background-color: #0056b3;
+    color: white;
+}

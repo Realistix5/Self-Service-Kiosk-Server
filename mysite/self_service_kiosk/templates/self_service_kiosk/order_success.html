@@ -1,0 +1,37 @@
+{% extends 'self_service_kiosk/base.html' %}
+
+{% block title %}{{ message }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ message }}</h1>
+<h1>Sie werden in <span id="countdown">5</span> Sekunden weitergeleitet. Um angemeldet zu bleiben, bitte verlassen Sie diese Seite.</h1>
+
+<script>
+    // Funktion für den Countdown und die Umleitung
+    function redirectWithCountdown() {
+        var countdownElement = document.getElementById("countdown");
+        var countdownValue = parseInt(countdownElement.textContent);
+
+        // Funktion für den Countdown
+        function countdown() {
+            countdownValue--;
+            countdownElement.textContent = countdownValue;
+            if (countdownValue <= 0) {
+                // Umleitung nach X Sekunden
+                window.location.href = "{% url 'self-service-kiosk:logout' %}";
+            } else {
+                // Countdown fortsetzen
+                setTimeout(countdown, 1000);
+            }
+        }
+
+        // Start des Countdowns
+        setTimeout(countdown, 1000);
+    }
+
+    // Funktion wird nach dem Laden der Seite aufgerufen
+    window.onload = redirectWithCountdown;
+</script>
+
+{% endblock %}

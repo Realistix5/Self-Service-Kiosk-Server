@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Instructions &mdash; Self-Service-Kiosk Django  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage Instructions / Bedienungsanleitung" href="usage_instructions_bedienungsanleitung.html" />
+    <link rel="prev" title="Welcome to Self-Service-Kiosk Django’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Self-Service-Kiosk Django
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup-db-postgresql">Setup DB (PostgreSQL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-env-file">Edit .env File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initializing-db-tables">Initializing DB Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-settings-py-and-start-server">Prepare settings.py and start server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#production-environment">Production Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#software">Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-deployment">Installation (Deployment)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#clone-repository">Clone Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system-update">System Update</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-and-enable-database">Install and Enable Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup-database">Setup Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-locale">Create Locale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-python-and-required-packages">Install Python and Required Packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-required-directories">Create Required Directories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-env-file">Create .env File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-gunicorn">Test Gunicorn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-django-project">Initialize Django Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-nginx">Install NGINX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-nginx-configuration-file">Create NGINX Configuration File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-nginx-configuration-and-start-nginx-on-boot">Enable NGINX Configuration and Start NGINX on Boot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-and-restart-nginx">Check and Restart NGINX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-permissions-for-static-files">Set Permissions for Static Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-permissions-for-home-directory">Set Permissions for Home Directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup-gunicorn-as-a-system-service">Setup Gunicorn as a System Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-and-enable-gunicorn-service">Start and Enable Gunicorn Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-firewall">Configure Firewall</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#host-settings-ip-configuration">Host-Settings (IP-Configuration)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssl-certificate">SSL-Certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#django-debug-mode">Django Debug Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-commands">Useful Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reload-system-services">Reload System Services:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#restart-gunicorn-service">Restart Gunicorn Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-gunicorn-service-status">Show Gunicorn Service Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#restart-nginx-service">Restart NGINX Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-nginx-service-status">Show NGINX Service Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage_instructions_bedienungsanleitung.html">Usage Instructions / Bedienungsanleitung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical_documentation.html">Technical Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Self-Service-Kiosk Django</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setup Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/setup_instructions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-instructions">
+<h1>Setup Instructions<a class="headerlink" href="#setup-instructions" title="Link to this heading"></a></h1>
+<section id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Link to this heading"></a></h2>
+<p>To install the project in a development environment, only Python and some Python packages are required. It is also recommended to use a proper database such as PostgreSQL in the development environment already. The installation with PostgreSQL is described below. Alternatively, SQLite can also be used, which gets installed with Python 3.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Python 3.11.6 or higher</strong>: <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p></li>
+<li><p>Recommended: <strong>PostgreSQL</strong>: <a class="reference external" href="https://www.postgresql.org/download/">https://www.postgresql.org/download/</a></p></li>
+<li><dl class="simple">
+<dt><strong>Python Packages</strong>:</dt><dd><ul>
+<li><p><strong>Django</strong>: 5.0.6</p></li>
+<li><p><strong>dotenv</strong>: 1.0.1</p></li>
+<li><p><strong>qrcode</strong>: 7.4.2</p></li>
+<li><p><strong>reportlab</strong>: 4.2.2</p></li>
+<li><p><strong>requests</strong>: 2.32.3</p></li>
+<li><p><strong>psycopg</strong> (for usage with PostgreSQL): 3.2.1</p></li>
+<li><p><strong>django-sslserver</strong> (for usage with SSL/HTTPS): 22.0.0</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="getting-started">
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h3>
+<p>Before getting started you need to install all prerequisites. Once successfully installed, you need to make a few configurations, before you can start your development server.</p>
+<p>If want to use another database besides PostgreSQL you can edit <cite>DATABASES</cite> in <cite>settings.py</cite> following <a class="reference external" href="https://docs.djangoproject.com/en/5.0/ref/databases/">Django’s guide</a>.</p>
+<p>If you want to use PostgreSQL, please continue reading.</p>
+<section id="setup-db-postgresql">
+<h4>Setup DB (PostgreSQL)<a class="headerlink" href="#setup-db-postgresql" title="Link to this heading"></a></h4>
+<p>First, we need to create a database and a database user and grant the user access to the database, by
+replacing &gt;DB-User&lt;, &gt;DB-User-Password&lt; and &gt;DB-Name&lt; with the username, password and database name you wish to use in the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>postgres
+psql
+CREATE<span class="w"> </span>ROLE<span class="w"> </span>&gt;DB-User&lt;<span class="w"> </span>WITH<span class="w"> </span>LOGIN<span class="w"> </span>SUPERUSER<span class="w"> </span>PASSWORD<span class="w"> </span><span class="s1">&#39;&gt;DB-User-Password&lt;&#39;</span><span class="p">;</span>
+CREATE<span class="w"> </span>DATABASE<span class="w"> </span>&gt;DB-Name&lt;<span class="p">;</span>
+GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span>DATABASE<span class="w"> </span>&gt;DB-Name&lt;<span class="w"> </span>TO<span class="w"> </span>&gt;DB-User&lt;<span class="p">;</span>
+<span class="se">\q</span>
+<span class="nb">exit</span>
+</pre></div>
+</div>
+</section>
+<section id="edit-env-file">
+<h4>Edit .env File<a class="headerlink" href="#edit-env-file" title="Link to this heading"></a></h4>
+<p>Next, we need to add a <cite>.env</cite>-file which holds various sensitive information, including the database access, by executing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>.env
+</pre></div>
+</div>
+<p>Replace placeholder values <cite>&gt;…&lt;</cite> with your actual configuration details. A <strong>secret</strong> SumUp-API-Key can be created <a class="reference external" href="https://developer.sumup.com/api-keys">here</a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DJANGO_SECRET_KEY=django-insecure-e(lhi9t328)pm_rl=@refzhpmw1soj-9_j$@zaba4gle24#1xq
+
+EMAIL_HOST=&gt;Email-Host&lt;
+EMAIL_HOST_USER=&gt;E-Mail-Address&lt;
+EMAIL_HOST_PASSWORD=&gt;Password&lt;
+
+DB_USER=&gt;DB-User&lt;
+DB_PASSWORD=&gt;DB-User-Password&lt;
+DB_HOST=&gt;DB-Host&lt;
+DB_NAME=&gt;DB-Name&lt;
+
+MEMBER_API_USER=&gt;API-Username&lt;
+MEMBER_API_REFRESH_TOKEN=&gt;API-Refresh-Token&lt;
+
+SUMUP_API_KEY=&gt;SumUp-API-Key&lt;
+</pre></div>
+</div>
+<p>After saving the file, you should now be ready to connect Django to your PostgreSQL database.</p>
+</section>
+<section id="initializing-db-tables">
+<h4>Initializing DB Tables<a class="headerlink" href="#initializing-db-tables" title="Link to this heading"></a></h4>
+<p>Before you can start your development server, you need to create Django migrations and apply them, by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic
+python<span class="w"> </span>manage.py<span class="w"> </span>createcachetable
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+</pre></div>
+</div>
+<p>Optionally, you can also run those lines, to create guest and event users and a predefined menu:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>create_menu
+python<span class="w"> </span>manage.py<span class="w"> </span>create_guest_user
+python<span class="w"> </span>manage.py<span class="w"> </span>create_event_user
+</pre></div>
+</div>
+</section>
+<section id="prepare-settings-py-and-start-server">
+<h4>Prepare settings.py and start server<a class="headerlink" href="#prepare-settings-py-and-start-server" title="Link to this heading"></a></h4>
+<p>Now you are almost ready to start your development server. Depending on whether you want to use a SSL-certificate or not, you need to adjust <cite>settings.py</cite>.</p>
+<p>Using an SSL-certificate is necessary to use the QR-Code feature.</p>
+<p>If you want to use the development server <strong>with</strong> a SSL-certificate, you need to add <cite>sslserver</cite> to <cite>INSTALLED_APPS</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># other installed apps ...</span>
+    <span class="s1">&#39;sslserver&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>After that, you can start the development server using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>runsslserver
+</pre></div>
+</div>
+<p>If you want to use the development server <strong>without</strong> a SSL-certificate, you need to either remove <cite>SECURE_SSL_REDIRECT</cite>, <cite>SESSION_COOKIE_SECURE</cite> and <cite>CSRF_COOKIE_SECURE</cite> or change them all to <cite>False</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SECURE_SSL_REDIRECT</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">SESSION_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">CSRF_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>After that, you can start the development server using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="production-environment">
+<h2>Production Environment<a class="headerlink" href="#production-environment" title="Link to this heading"></a></h2>
+<p>To install the project in a production environment, you will need to install the following software. You do not need to install the software beforehand. Following the step-by-step guide, you will install all required software along the way.</p>
+<p>Below the installation on a Linux system (Ubuntu 23.10 was tested) with PostgreSQL database and NGINX webserver is described. Alternatively, other databases and webservers could be used. In addition various Python packages are required and will be installed in a Python venv.</p>
+<p>After completing the step-by-step guide, your server should be running on localhost (127.0.0.1).</p>
+<section id="software">
+<h3>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Python</strong>: <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p></li>
+<li><p><strong>PostgreSQL</strong>: <a class="reference external" href="https://www.postgresql.org/download/">https://www.postgresql.org/download/</a></p></li>
+<li><p><strong>NGINX Server</strong>: <a class="reference external" href="https://nginx.org/en/download.html">https://nginx.org/en/download.html</a></p></li>
+<li><dl class="simple">
+<dt><strong>Python Packages</strong>:</dt><dd><ul>
+<li><p><strong>Django</strong>: 5.0.6</p></li>
+<li><p><strong>dotenv</strong>: 1.0.1</p></li>
+<li><p><strong>qrcode</strong>: 7.4.2</p></li>
+<li><p><strong>reportlab</strong>: 4.2.2</p></li>
+<li><p><strong>requests</strong>: 2.32.3</p></li>
+<li><p><strong>psycopg (for usage with PostgreSQL)</strong>: 3.2.1</p></li>
+<li><p><strong>gunicorn (for usage with NGINX)</strong>: 22.0.0</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="installation-deployment">
+<h3>Installation (Deployment)<a class="headerlink" href="#installation-deployment" title="Link to this heading"></a></h3>
+<p>This installation guide is made for Linux systems only. Installation on Windows should be possible, but was not testet.</p>
+<section id="clone-repository">
+<h4>Clone Repository<a class="headerlink" href="#clone-repository" title="Link to this heading"></a></h4>
+<p>Replace &gt;Your-Path&lt; with the path where you want to save the source code.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>xxxxx<span class="w"> </span>&gt;Your-Path&lt;
+</pre></div>
+</div>
+</section>
+<section id="system-update">
+<h4>System Update<a class="headerlink" href="#system-update" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+</pre></div>
+</div>
+</section>
+<section id="install-and-enable-database">
+<h4>Install and Enable Database<a class="headerlink" href="#install-and-enable-database" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql-contrib
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>postgresql
+</pre></div>
+</div>
+</section>
+<section id="setup-database">
+<h4>Setup Database<a class="headerlink" href="#setup-database" title="Link to this heading"></a></h4>
+<p>Replace &gt;DB-User&lt;, &gt;DB-User-Password&lt; and &gt;DB-Name&lt; with the username, password and database name you wish to use.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>postgres
+psql
+CREATE<span class="w"> </span>ROLE<span class="w"> </span>&gt;DB-User&lt;<span class="w"> </span>WITH<span class="w"> </span>LOGIN<span class="w"> </span>SUPERUSER<span class="w"> </span>PASSWORD<span class="w"> </span><span class="s1">&#39;&gt;DB-User-Password&lt;&#39;</span><span class="p">;</span>
+CREATE<span class="w"> </span>DATABASE<span class="w"> </span>&gt;DB-Name&lt;<span class="p">;</span>
+GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span>DATABASE<span class="w"> </span>&gt;DB-Name&lt;<span class="w"> </span>TO<span class="w"> </span>&gt;DB-User&lt;<span class="p">;</span>
+<span class="se">\q</span>
+<span class="nb">exit</span>
+</pre></div>
+</div>
+</section>
+<section id="create-locale">
+<h4>Create Locale<a class="headerlink" href="#create-locale" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>locale-gen<span class="w"> </span>de_DE<span class="w"> </span>de_DE.UTF-8
+</pre></div>
+</div>
+</section>
+<section id="install-python-and-required-packages">
+<h4>Install Python and Required Packages<a class="headerlink" href="#install-python-and-required-packages" title="Link to this heading"></a></h4>
+<p>Replace &gt;Your-Path&lt; with the location you cloned the repository to.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-venv<span class="w"> </span>-y
+
+<span class="nb">cd</span><span class="w"> </span>&gt;Your-Path&lt;/mysite
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<span class="nb">cd</span><span class="w"> </span>..
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<span class="nb">cd</span><span class="w"> </span>mysite
+</pre></div>
+</div>
+</section>
+<section id="create-required-directories">
+<h4>Create Required Directories<a class="headerlink" href="#create-required-directories" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>logs<span class="w"> </span>media<span class="w"> </span>invoices<span class="w"> </span>qr_codes/<span class="o">{</span>login,password<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="create-env-file">
+<h4>Create .env File<a class="headerlink" href="#create-env-file" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>.env
+</pre></div>
+</div>
+<p>Replace placeholder values <cite>&gt;…&lt;</cite> with your actual configuration details. A <strong>secret</strong> SumUp-API-Key can be created <a class="reference external" href="https://developer.sumup.com/api-keys">here</a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DJANGO_SECRET_KEY=django-insecure-e(lhi9t328)pm_rl=@refzhpmw1soj-9_j$@zaba4gle24#1xq
+
+EMAIL_HOST=&gt;Email-Host&lt;
+EMAIL_HOST_USER=&gt;E-Mail-Address&lt;
+EMAIL_HOST_PASSWORD=&gt;Password&lt;
+
+DB_USER=&gt;DB-User&lt;
+DB_PASSWORD=&gt;DB-User-Password&lt;
+DB_HOST=&gt;DB-Host&lt;
+DB_NAME=&gt;DB-Name&lt;
+
+MEMBER_API_USER=&gt;API-Username&lt;
+MEMBER_API_REFRESH_TOKEN=&gt;API-Refresh-Token&lt;
+
+SUMUP_API_KEY=&gt;SumUp-API-Key&lt;
+</pre></div>
+</div>
+</section>
+<section id="test-gunicorn">
+<h4>Test Gunicorn<a class="headerlink" href="#test-gunicorn" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gunicorn<span class="w"> </span>--workers<span class="w"> </span><span class="m">3</span><span class="w"> </span>mysite.wsgi:application
+</pre></div>
+</div>
+<p>End with Strg + C.</p>
+</section>
+<section id="initialize-django-project">
+<h4>Initialize Django Project<a class="headerlink" href="#initialize-django-project" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+python<span class="w"> </span>manage.py<span class="w"> </span>create_menu
+python<span class="w"> </span>manage.py<span class="w"> </span>create_guest_user
+python<span class="w"> </span>manage.py<span class="w"> </span>create_event_user
+python<span class="w"> </span>manage.py<span class="w"> </span>createcachetable
+deactivate
+</pre></div>
+</div>
+</section>
+<section id="install-nginx">
+<h4>Install NGINX<a class="headerlink" href="#install-nginx" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx<span class="w"> </span>-y
+</pre></div>
+</div>
+</section>
+<section id="create-nginx-configuration-file">
+<h4>Create NGINX Configuration File<a class="headerlink" href="#create-nginx-configuration-file" title="Link to this heading"></a></h4>
+<p>Replace &gt;NGINX-Config-Name&lt; with a name for your NGINX Configuration e.g.: ‘self_service_kiosk’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/&gt;NGINX-Config-Name&lt;
+</pre></div>
+</div>
+<p>Replace &gt;Your-Path&lt; placeholders with the location you cloned this repository to.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>server {
+    listen 80;
+    server_name 127.0.0.1;
+    return 301 https://$host$request_uri;  # Redirects all HTTP requests to HTTPS
+}
+
+server {
+    listen 443 ssl;
+    server_name 127.0.0.1;
+
+    ssl_certificate &gt;Your-Path&lt;/mysite/mysite.crt;
+    ssl_certificate_key &gt;Your-Path&lt;/mysite/mysite.key;
+
+    location /static/ {
+        alias &gt;Your-Path&lt;/mysite/static/;
+        expires 30d;
+        access_log off;
+    }
+
+    location /media/ {
+        alias &gt;Your-Path&lt;/mysite/media/;
+        expires 30d;
+        access_log off;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:&gt;Your-Path&lt;/mysite/mysite.sock;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+</pre></div>
+</div>
+</section>
+<section id="enable-nginx-configuration-and-start-nginx-on-boot">
+<h4>Enable NGINX Configuration and Start NGINX on Boot<a class="headerlink" href="#enable-nginx-configuration-and-start-nginx-on-boot" title="Link to this heading"></a></h4>
+<p>Replace &gt;NGINX-Config-Name&lt; with the NGINX configuration name you selected.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/&gt;NGINX-Config-Name&lt;<span class="w"> </span>/etc/nginx/sites-enabled
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nginx
+</pre></div>
+</div>
+</section>
+<section id="check-and-restart-nginx">
+<h4>Check and Restart NGINX<a class="headerlink" href="#check-and-restart-nginx" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</pre></div>
+</div>
+</section>
+<section id="set-permissions-for-static-files">
+<h4>Set Permissions for Static Files<a class="headerlink" href="#set-permissions-for-static-files" title="Link to this heading"></a></h4>
+<p>Replace &gt;Your-Username&lt; with the username you are using and &gt;Your-Path&lt; placeholders with the location you cloned this repository to.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>&gt;Your-Username&lt;:www-data<span class="w"> </span>&gt;Your-Path&lt;/mysite
+sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">755</span><span class="w"> </span>&gt;Your-Path&lt;/mysite
+</pre></div>
+</div>
+</section>
+<section id="set-permissions-for-home-directory">
+<h4>Set Permissions for Home Directory<a class="headerlink" href="#set-permissions-for-home-directory" title="Link to this heading"></a></h4>
+<p>Replace &gt;Your-Path&lt; with the location you cloned this repository to.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>&gt;Your-Path&lt;/
+</pre></div>
+</div>
+</section>
+<section id="setup-gunicorn-as-a-system-service">
+<h4>Setup Gunicorn as a System Service<a class="headerlink" href="#setup-gunicorn-as-a-system-service" title="Link to this heading"></a></h4>
+<p>Replace &gt;Your-Path&lt; placeholders with the location you cloned this repository to.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/gunicorn.service
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ctraut
+Group=www-data
+WorkingDirectory=&gt;Your-Path&lt;/mysite/
+ExecStart=&gt;Your-Path&lt;/mysite/venv/bin/gunicorn --workers 3 --bind unix:&gt;Your-Path&lt;/mysite/mysite.sock mysite.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+</pre></div>
+</div>
+</section>
+<section id="start-and-enable-gunicorn-service">
+<h4>Start and Enable Gunicorn Service<a class="headerlink" href="#start-and-enable-gunicorn-service" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>gunicorn
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>gunicorn
+</pre></div>
+</div>
+</section>
+<section id="configure-firewall">
+<h4>Configure Firewall<a class="headerlink" href="#configure-firewall" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="s1">&#39;Nginx Full&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configurations">
+<h3>Configurations<a class="headerlink" href="#configurations" title="Link to this heading"></a></h3>
+<section id="host-settings-ip-configuration">
+<h4>Host-Settings (IP-Configuration)<a class="headerlink" href="#host-settings-ip-configuration" title="Link to this heading"></a></h4>
+<p>To use another host/ip than localhost (127.0.0.1) you need to modify Djangos <cite>settings.py</cite> and your NGINX configuration.</p>
+<p>Add your desired host/ip <cite>&gt;Your-Host&lt;</cite> to <cite>ALLOWED_HOSTS</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>  <span class="c1"># You can remove this line if you want</span>
+    <span class="s2">&quot;&gt;Your-Host&lt;&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>And modify your NGINX configuration by replacing &gt;NGINX-Config-Name&lt; with a name of your NGINX Configuration e.g.: ‘self_service_kiosk’ in the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/&gt;NGINX-Config-Name&lt;
+</pre></div>
+</div>
+<p>Now you can need to replace &gt;Your-Host&lt; with your desired host/ip address.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>server {
+    listen 80;
+    server_name &gt;Your-Host&lt;;
+    return 301 https://$host$request_uri;  # Redirects all HTTP requests to HTTPS
+}
+
+server {
+    listen 443 ssl;
+    server_name &gt;Your-Host&lt;;
+
+    ssl_certificate &gt;Your-Path&lt;/mysite/mysite.crt;
+    ssl_certificate_key &gt;Your-Path&lt;/mysite/mysite.key;
+
+    location /static/ {
+        alias &gt;Your-Path&lt;/mysite/static/;
+        expires 30d;
+        access_log off;
+    }
+
+    location /media/ {
+        alias &gt;Your-Path&lt;/mysite/media/;
+        expires 30d;
+        access_log off;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:&gt;Your-Path&lt;/mysite/mysite.sock;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+</pre></div>
+</div>
+<p>After saving your changes, you can apply the changes by reloading system services and restarting Gunicorn and NGINX service.</p>
+</section>
+<section id="ssl-certificate">
+<h4>SSL-Certificate<a class="headerlink" href="#ssl-certificate" title="Link to this heading"></a></h4>
+<p>This repository comes with a self-singed certificate for simple installation. In a production scenario you might want to use your own ssl-certificate.</p>
+<p>The simplest way to achieve that is by placing your certificate and key as ‘mysite.key’ and ‘mysite.crt’ in the ‘mysite’ folder.</p>
+<p>Alternatively you can modify those filenames and paths by editing the according lines in the NGINX configuration like shown in the previous chapter.</p>
+</section>
+<section id="django-debug-mode">
+<h4>Django Debug Mode<a class="headerlink" href="#django-debug-mode" title="Link to this heading"></a></h4>
+<p>For production environments Django suggests disabling the <cite>DEBUG</cite> mode by setting <cite>DEBUG=False</cite> in <cite>settings.py</cite>.</p>
+<p>After changing the file you should restart your Gunicorn service to apply changes.</p>
+</section>
+</section>
+<section id="useful-commands">
+<h3>Useful Commands<a class="headerlink" href="#useful-commands" title="Link to this heading"></a></h3>
+<section id="reload-system-services">
+<h4>Reload System Services:<a class="headerlink" href="#reload-system-services" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</pre></div>
+</div>
+</section>
+<section id="restart-gunicorn-service">
+<h4>Restart Gunicorn Service<a class="headerlink" href="#restart-gunicorn-service" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>gunicorn
+</pre></div>
+</div>
+</section>
+<section id="show-gunicorn-service-status">
+<h4>Show Gunicorn Service Status<a class="headerlink" href="#show-gunicorn-service-status" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>gunicorn
+</pre></div>
+</div>
+</section>
+<section id="restart-nginx-service">
+<h4>Restart NGINX Service<a class="headerlink" href="#restart-nginx-service" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</pre></div>
+</div>
+</section>
+<section id="show-nginx-service-status">
+<h4>Show NGINX Service Status<a class="headerlink" href="#show-nginx-service-status" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Self-Service-Kiosk Django’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage_instructions_bedienungsanleitung.html" class="btn btn-neutral float-right" title="Usage Instructions / Bedienungsanleitung" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Christopher Trautmann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

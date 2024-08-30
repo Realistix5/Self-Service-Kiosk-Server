@@ -1,0 +1,183 @@
+{% extends 'self_service_kiosk/base.html' %}
+
+{% block title %}Alle Produkte{% endblock %}
+
+{% block content %}
+    <style>
+        .content {
+            padding-bottom: 99px; /* Höhe des Footers plus 44 */
+        }
+        h2::before {
+            content: "";
+            display: block;
+            height: 55px; /* Höhe des zusätzlichen Abstands */
+            margin-top: -55px; /* Gleiche Höhe, um den Abstand zu erzeugen */
+            visibility: hidden; /* Sicherstellen, dass das Pseudoelement nicht sichtbar ist */
+        }
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .truncate-multiline {
+            height: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            overflow: hidden;
+            word-break: break-word;
+            white-space: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .item-image, .no-image-placeholder {
+            cursor: pointer; /* Zeigt an, dass die Bilder anklickbar sind */
+        }
+    </style>
+    <div class="top-nav">
+        <ul>
+        {% for category in categories %}
+            <li><a class="rounded-button" href="#{{ category.category.category_name }}">{{ category.category.category_name }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div style="height: 14px;"></div>
+
+    <h1>Alle Produkte</h1>
+    {% for category in categories %}
+        <h2 id="{{ category.category.category_name }}">{{ category.category.category_name }}</h2>
+        <div class="outer-container">
+            <div class="horizontal-scroll">
+                <div class="items-container">
+                    {% for data in data %}
+                        {% if data.item.category == category.category %}
+                            <div class="item-box">
+                                {% if data.item.picture %}
+                                    <div class="item-image" style="background-image: url({{ data.item.picture.url }})" data-item-id="{{ data.item.id }}"></div>
+                                {% else %}
+                                    <div class="no-image-placeholder" data-item-id="{{ data.item.id }}"></div>
+                                {% endif %}
+                                <div class="item-details">
+                                    <div class="truncate-multiline">{{ data.item.name }}</div>
+                                    <p>{{ data.item.price }} €</p>
+                                </div>
+                                <div class="cart-manipulation">
+                                    <button class="minus-button" data-item-id="{{ data.item.id }}" style="visibility: hidden;">-</button>
+                                    <span class="quantity" data-item-id="{{ data.item.id }}">{{ data.quantity }}</span>
+                                    <button class="plus-button" data-item-id="{{ data.item.id }}">+</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if category.product_count > 4 %}
+                        <div class="filler"></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const plusButtons = document.querySelectorAll('.plus-button');
+        const minusButtons = document.querySelectorAll('.minus-button');
+        const quantities = document.querySelectorAll('.quantity');
+        const images = document.querySelectorAll('.item-image, .no-image-placeholder');
+        const scrollContainers = document.querySelectorAll('.horizontal-scroll');
+
+        initializeQuantities();
+        initializeShadows();
+        initializeImages();
+
+        plusButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemId = this.dataset.itemId;
+                const quantitySpan = document.querySelector(`.quantity[data-item-id="${itemId}"]`);
+                let quantity = parseInt(quantitySpan.textContent) + 1;
+                quantitySpan.textContent = quantity;
+                updateCart(itemId, quantity);
+            });
+        });
+
+        minusButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemId = this.dataset.itemId;
+                const quantitySpan = document.querySelector(`.quantity[data-item-id="${itemId}"]`);
+                let quantity = parseInt(quantitySpan.textContent) - 1;
+                if (quantity > 0) {
+                    quantitySpan.textContent = quantity;
+                } else {
+                    quantity = 0;
+                    quantitySpan.textContent = quantity;
+                    this.style.visibility = 'hidden';
+                }
+                updateCart(itemId, quantity);
+            });
+        });
+
+        function initializeImages() {
+            images.forEach(image => {
+                image.addEventListener('click', function() {
+                    const itemId = this.dataset.itemId;
+                    const plusButton = document.querySelector(`.plus-button[data-item-id="${itemId}"]`);
+                    plusButton.click();
+                });
+            });
+        }
+
+        function updateView(itemId, quantity) {
+            const minusButton = document.querySelector(`.minus-button[data-item-id="${itemId}"]`);
+            const quantityView = document.querySelector(`.quantity[data-item-id="${itemId}"]`);
+            if (quantity > 0) {
+                minusButton.style.visibility = 'visible';
+                quantityView.style.visibility = 'visible';
+            } else {
+                minusButton.style.visibility = 'hidden';
+                quantityView.style.visibility = 'hidden';
+            }
+        }
+
+        function updateCart(itemId, quantity) {
+            fetch(`/update_quantity/${itemId}/${quantity}/`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Cart updated', data);
+                    updateView(itemId, quantity);
+                })
+                .catch(error => console.error('Error updating cart:', error));
+        }
+
+        function initializeQuantities() {
+            const quantitySpans = document.querySelectorAll('.quantity');
+            quantitySpans.forEach(span => {
+                const itemId = span.dataset.itemId;
+                const quantity = parseInt(span.textContent);
+                updateView(itemId, quantity);
+            });
+        }
+
+        function initializeShadows() {
+            scrollContainers.forEach(container => {
+                updateShadow(container);
+                container.addEventListener('scroll', function() {
+                    updateShadow(this);
+                });
+            });
+        }
+
+        function updateShadow(element) {
+            if (element.scrollLeft === 0) {
+                element.classList.remove('overflow-left');
+            } else {
+                element.classList.add('overflow-left');
+            }
+
+            if (element.scrollWidth - (element.scrollLeft + element.clientWidth) <= 1) {
+                element.classList.remove('overflow-right');
+            } else {
+                element.classList.add('overflow-right');
+            }
+        }
+    });
+    </script>
+{% endblock %}

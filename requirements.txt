@@ -1,0 +1,7 @@
+django
+psycopg
+python-dotenv
+qrcode
+reportlab
+requests
+gunicorn

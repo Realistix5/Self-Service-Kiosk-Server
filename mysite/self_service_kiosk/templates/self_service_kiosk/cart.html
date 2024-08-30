@@ -1,0 +1,149 @@
+{% extends 'self_service_kiosk/base.html' %}
+
+{% block title %}Warenkorb{% endblock %}
+
+{% block content %}
+    <h1>Warenkorb</h1>
+    <table id="cart-table">
+        {% if order_items %}
+        <thead>
+            <tr>
+                <th>Produkt</th>
+                <th>Einzelpreis</th>
+                <th>Menge</th>
+                <th>Zwischenpreis</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+                <tr data-item-id="{{ item.product.id }}">
+                    <td>{{ item.product.name }}</td>
+                    <td class="currency_cell"><span class="price">{{ item.product.price }}</span> €</td>
+                    <td>
+                        <div class="cart-manipulation">
+                            <button class="minus-button" data-item-id="{{ item.product.id }}">-</button>
+                            <span class="quantity" data-item-id="{{ item.product.id }}">{{ item.quantity }}</span>
+                            <button class="plus-button" data-item-id="{{ item.product.id }}">+</button>
+                        </div>
+                    </td>
+                    <td class="currency_cell"><span class="subtotal">{{ item.subtotal }}</span> €</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
+
+    <p><h3 class="total" id="total_price_whole">Gesamtpreis: <span id="total_price"></span></h3></p>
+
+    <p class="button-container">
+        <div class="button-row">
+            {% if is_webview %}
+                <form action="pay://sumup" method="get">
+                    <input type="hidden" name="total" value="1.01" id="pay_amount">
+                    <input type="hidden" name="type" value="order">
+                    {% if user.username != "guest_user" %}
+                        <input type="hidden" name="title" value="Zahlung an das GSV Gundernhausen Tennis Kiosk von Mitgliednr. {{ user.username }}">
+                        <input type="hidden" name="receipt_email" value="{{ user.email }}">
+                    {% else %}
+                        <input type="hidden" name="title" value="Zahlung an das GSV Gundernhausen Tennis Kiosk von einem Gast">
+                    {% endif %}
+                    <button id="pay_directly_button" type="submit">Zahle mit Karte</button>
+                </form>
+            {% endif %}
+            {% if user.username != "guest_user" %}
+                <form action="{% url 'self-service-kiosk:confirm_order' %}" method="GET">
+                    <button id="pay_later_button" type="submit">Zahle auf Rechnung</button>
+                </form>
+            {% endif %}
+        </div>
+    </p>
+
+    <h3 id="empty_message">Ihr Warenkorb ist leer.</h3>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var cartTable = document.getElementById('cart-table');
+            var totalPrice = document.getElementById('total_price');
+            var totalPriceWhole = document.getElementById('total_price_whole');
+            var emptyMessage = document.getElementById('empty_message');
+            var payButton = document.getElementById('pay_amount');
+            var payLaterButton = document.getElementById('pay_later_button');
+            var payDirectlyButton = document.getElementById('pay_directly_button');
+
+            function updateCart() {
+                var total = 0;
+                var subtotals = document.querySelectorAll('.subtotal');
+                subtotals.forEach(function(subtotalElement) {
+                    total += parseFloat(subtotalElement.textContent.replace(',', '.'));
+                });
+                totalPrice.textContent = total.toFixed(2).replace('.', ',') + ' €';
+                if (payButton != null) {
+                    payButton.value = total.toFixed(2);
+                }
+
+                if (total === 0) {
+                    cartTable.style.display = 'none';
+                    totalPriceWhole.style.display = 'none';
+                    emptyMessage.style.display = 'inline';
+                    if (payLaterButton != null) {
+                        payLaterButton.style.display = 'none';
+                    }
+                    if (payDirectlyButton != null) {
+                        payDirectlyButton.style.display = 'none';
+                    }
+                } else {
+                    emptyMessage.style.display = 'none';
+                }
+            }
+
+            function updateQuantity(itemId, newQuantity) {
+                var row = document.querySelector('tr[data-item-id="' + itemId + '"]');
+                var quantityElement = row.querySelector('.quantity[data-item-id="' + itemId + '"]');
+                var priceElement = row.querySelector('.price');
+                var subtotalElement = row.querySelector('.subtotal');
+                var price = parseFloat(priceElement.textContent.replace(',', '.'));
+                var subtotal = newQuantity * price;
+
+                if (newQuantity > 0) {
+                    quantityElement.textContent = newQuantity;
+                    subtotalElement.textContent = subtotal.toFixed(2).replace('.', ',');
+                } else {
+                    row.remove();
+                }
+
+                fetch('/update_quantity/' + itemId + '/' + newQuantity + '/')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        updateCart();
+                    })
+                    .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                    });
+            }
+
+            document.querySelectorAll('.plus-button').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var itemId = this.dataset.itemId;
+                    var quantityElement = document.querySelector('.quantity[data-item-id="' + itemId + '"]');
+                    var newQuantity = parseInt(quantityElement.textContent) + 1;
+                    updateQuantity(itemId, newQuantity);
+                });
+            });
+
+            document.querySelectorAll('.minus-button').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var itemId = this.dataset.itemId;
+                    var quantityElement = document.querySelector('.quantity[data-item-id="' + itemId + '"]');
+                    var newQuantity = parseInt(quantityElement.textContent) - 1;
+                    if (newQuantity >= 0) {
+                        updateQuantity(itemId, newQuantity);
+                    }
+                });
+            });
+
+            updateCart();
+        });
+    </script>
+{% endblock %}

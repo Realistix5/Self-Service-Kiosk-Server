@@ -1,0 +1,106 @@
+{% extends 'self_service_kiosk/base.html' %}
+
+{% block title %}Kontoübersicht{% endblock %}
+
+{% block content %}
+    <style>
+        h3 {
+            text-align: center;
+        }
+        a {
+            text-decoration: underline;
+            color: blue;
+        }
+    </style>
+    <h1>Kontoübersicht</h1>
+    <h2>Bestellungen</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Erstelldatum</th>
+                <th>Gesamtpreis</th>
+                <th>Direkt bezahlt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'self-service-kiosk:order_detail' order.id %}">{{ order.id }}</a></td>
+                <td>{{ order.created_at|date:"F d, Y" }}</td>
+                <td class="price">{{ order.get_total_price }} €</td>
+                <td>
+                    {% if order.paid %}
+                        <span style="color: green;">✔</span>
+                    {% else %}
+                        <span style="color: red;">✘</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Guthabenzahlungen</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Datum</th>
+                <th>Betrag</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ payment.transaction_id }}</td>
+                <td>{{ payment.created_at|date:"F d, Y" }}</td>
+                <td class="price">{{ payment.amount }} €</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Display total price below the table -->
+    <p>
+        <h3>
+            {% if total_is_debit %}
+                Restliches Guthaben:
+            {% else %}
+                Offener Betrag:
+            {% endif %}
+            {{ total_price }} €
+        </h3>
+    </p>
+
+    {% if is_webview %}
+        <p class="button-container">
+            <div class="button-row">
+                <form action="pay://sumup" method="get">
+                    <input type="hidden" name="title" value="Guthabenzahlung an das GSV Gundernhausen Tennis Kiosk von Mitgliednr. {{ user.username }}">
+                    <input type="hidden" name="total" value="10.00">
+                    <input type="hidden" name="type" value="credit">
+                    <input type="hidden" name="receipt_email" value="{{ user.email }}">
+                    <button type="submit">10€ Guthaben aufladen</button>
+                </form>
+                <form action="pay://sumup" method="get">
+                    <input type="hidden" name="title" value="Guthabenzahlung an das GSV Gundernhausen Tennis Kiosk von Mitgliednr. {{ user.username }}">
+                    <input type="hidden" name="total" value="20.00">
+                    <input type="hidden" name="type" value="credit">
+                    <input type="hidden" name="receipt_email" value="{{ user.email }}">
+                    <button type="submit">20€ Guthaben aufladen</button>
+                </form>
+                <form action="pay://sumup" method="get">
+                    <input type="hidden" name="title" value="Guthabenzahlung an das GSV Gundernhausen Tennis Kiosk von Mitgliednr. {{ user.username }}">
+                    <input type="hidden" name="total" value="50.00">
+                    <input type="hidden" name="type" value="credit">
+                    <input type="hidden" name="receipt_email" value="{{ user.email }}">
+                    <button type="submit">50€ Guthaben aufladen</button>
+                </form>
+            </div>
+        </p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.categories-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.categories-table th,
+.categories-table td {
+    border: 0px solid #ddd;
+    padding: 8px;
+}
+
+.categories-table th {
+    background-color: #f2f2f2;
+}
+
+.item-image {
+    text-align: center; /* Bilder mittig ausrichten */
+}
+
+.item-image img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.item-details h2 {
+    margin: 0;
+}
+
+.item-price p {
+    margin: 0;
+}
+
+.cart-manipulation button {
+    cursor: pointer;
+}
+
+.no-image-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: none;
+    text-align: center;
+}
+
+.minus-button,
+.plus-button {
+    font-size: 16px;
+    padding: 4px 8px;
+    margin: 0 4px;
+}
+
+.quantity {
+    font-weight: bold;
+}
+
+.spacer-row td {
+    padding: 10;
+}
+
+h2 {
+    margin: 0;
+}
+
+.categories-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.category {
+    text-align: center;
+}
+
+/* Begin footer navigation */
+
+.footer-nav {
+    text-align: center;
+    margin-top: 20px; /* Anpassen je nach Bedarf */
+}
+
+.footer-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-nav ul li {
+    display: inline;
+    margin: 0 10px; /* Abstand zwischen den Schaltflächen anpassen */
+}
+
+.rounded-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #999; /* Standard Grau */
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.rounded-button:hover {
+    background-color: #666; /* Dunkleres Grau im Hover-Zustand */
+}

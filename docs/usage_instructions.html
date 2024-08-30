@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage Instructions &mdash; Self-Service-Kiosk Django  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bedienungsanleitung" href="bedienungsanleitung.html" />
+    <link rel="prev" title="Usage Instructions / Bedienungsanleitung" href="usage_instructions_bedienungsanleitung.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Self-Service-Kiosk Django
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_instructions.html">Setup Instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="usage_instructions_bedienungsanleitung.html">Usage Instructions / Bedienungsanleitung</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manage-categories">Manage Categories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-category">Add Category</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-category">Edit Category</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-category">Remove Category</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#manage-menu-items">Manage Menu Items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-invoice-and-year-end-statement">Create Invoice and Year End Statement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-invoice">Create Invoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recreate-invoice">Recreate Invoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#send-email">Send Email</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#export-year-end-statements-to-csv">Export Year End Statements to CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#export-orders-to-csv">Export Orders to CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bedienungsanleitung.html">Bedienungsanleitung</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technical_documentation.html">Technical Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Self-Service-Kiosk Django</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="usage_instructions_bedienungsanleitung.html">Usage Instructions / Bedienungsanleitung</a></li>
+      <li class="breadcrumb-item active">Usage Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage_instructions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-instructions">
+<h1>Usage Instructions<a class="headerlink" href="#usage-instructions" title="Link to this heading"></a></h1>
+<p>In this section you will find customization and usage instructions for different management use cases.</p>
+<p>The management of categories is explained most extensively. To manage other objects like menu items, orders, invoices or users, you can also refer to <a class="reference internal" href="#manage-categories">Manage Categories</a>, because managing other objects works analogue to categories.</p>
+<section id="manage-categories">
+<span id="id1"></span><h2>Manage Categories<a class="headerlink" href="#manage-categories" title="Link to this heading"></a></h2>
+<p>To manage the menu item categories, please open the admin page in a browser under <cite>&gt;Host&lt;/admin/</cite> and login with your admin account.</p>
+<p>Once logged in with your admin account you will see a page, similar to the following picture. Now click “Kategorien”:</p>
+<img alt="_images/Category_%281%29.png" class="align-center" src="_images/Category_%281%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now you see all categories that will be shown on the “All Products” page and their attributes:</p>
+<img alt="_images/Category_%281.1%29.png" class="align-center" src="_images/Category_%281.1%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="add-category">
+<h3>Add Category<a class="headerlink" href="#add-category" title="Link to this heading"></a></h3>
+<p>To add a new category, navigate to the categories admin page and click “Kategorie hinzufügen +”:</p>
+<img alt="_images/Category_%282%29.png" class="align-center" src="_images/Category_%282%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now you are in the menu to create a new category. Here you can insert the desired name, the order_number in which it will be displayed (list gets sorted ascending, so low number comes first) and if it should be a <cite>event category</cite> (if set to true this category gets only displayed for the user with username “event_user”).</p>
+<p>To save your change and add the new category, click one of the three buttons marked red in the following picture:</p>
+<img alt="_images/Category_%283%29.png" class="align-center" src="_images/Category_%283%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>After saving the new category, you will be redirected to the list of categories. Here a message will show, indicating if the creation was successful:</p>
+<img alt="_images/Category_%284%29.png" class="align-center" src="_images/Category_%284%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="edit-category">
+<h3>Edit Category<a class="headerlink" href="#edit-category" title="Link to this heading"></a></h3>
+<p>To add a new category, navigate to the categories admin page and click on the name of the category you want to edit:</p>
+<img alt="_images/Category_%285%29.png" class="align-center" src="_images/Category_%285%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now you can make changes by editing the fields and clicking one of the three buttons on the bottom to save your changes:</p>
+<img alt="_images/Category_%286%29.png" class="align-center" src="_images/Category_%286%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>After saving your changes, you will be redirected to the list of categories. Here a message will show, indicating if your changes were saved successfully:</p>
+<img alt="_images/Category_%287%29.png" class="align-center" src="_images/Category_%287%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="remove-category">
+<h3>Remove Category<a class="headerlink" href="#remove-category" title="Link to this heading"></a></h3>
+<p>To remove a category, navigate to the categories admin page and check the box of the category you want to remove:</p>
+<img alt="_images/Category_%288%29.png" class="align-center" src="_images/Category_%288%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now select the option “Ausgewählte Kategorien löschen” from the drop-down menu:</p>
+<img alt="_images/Category_%289%29.png" class="align-center" src="_images/Category_%289%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Then click on “Ausführen” to execute the deletion:</p>
+<img alt="_images/Category_%2810%29.png" class="align-center" src="_images/Category_%2810%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Next, you get asked if you are sure and what exactly will be deleted along with the selected objects.
+Click “Ja, bin sicher” to confirm and proceed with the deletion:</p>
+<img alt="_images/Category_%2811%29.png" class="align-center" src="_images/Category_%2811%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now you get redirected back to the list of categories. Here a message will show, indicating if the deletion was successful:</p>
+<img alt="_images/Category_%2812%29.png" class="align-center" src="_images/Category_%2812%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="manage-menu-items">
+<h2>Manage Menu Items<a class="headerlink" href="#manage-menu-items" title="Link to this heading"></a></h2>
+<p>The management of menu items works analogue to the management of categories.
+Thus this chapter will not explain everything as detailed as <a class="reference internal" href="#manage-categories">Manage Categories</a> did and will only explain peculiarities for menu items.</p>
+<p>To access the menu item admin page from the admin index page, click “Menüpunkte”:</p>
+<img alt="_images/MenuItem_%280%29.png" class="align-center" src="_images/MenuItem_%280%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now you see all menu items that will potentially be shown on the “All Products” page and their attributes:</p>
+<img alt="_images/MenuItem_%281%29.png" class="align-center" src="_images/MenuItem_%281%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Here you can see what editing a menu item looks like.
+Every menu item needs a category and trying to create one without will not work.
+If you wish that a menu item does not get shown anymore and you do not want to remove it,
+because removing would also remove relating order items, you can check the “Versteckt” box and save your changes to hide them.</p>
+<img alt="_images/MenuItem_%282%29.png" class="align-center" src="_images/MenuItem_%282%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="create-invoice-and-year-end-statement">
+<h2>Create Invoice and Year End Statement<a class="headerlink" href="#create-invoice-and-year-end-statement" title="Link to this heading"></a></h2>
+<p>This chapter describes the process to send invoices to users at the end of the year or beginning of the new year.</p>
+<p>Creating or recreating a new invoice comes always with the creation or update of a relating yearendstatement and 0-2 relating payments which either reset users debt (because the amount in debt is collected via direct debt) or transfers balance over to the next year (by subtracting the balance in the old and adding it in the new year).</p>
+<section id="create-invoice">
+<h3>Create Invoice<a class="headerlink" href="#create-invoice" title="Link to this heading"></a></h3>
+<p>To create a first version of an invoice you need to first navigate to the admin user management page (“Benutzer”).</p>
+<p>Here you need to check all users you want to create an invoice for:</p>
+<img alt="_images/Invoice_%281%29.png" class="align-center" src="_images/Invoice_%281%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Next, select from the drop-down list if you want to generate an invoice for this year (“Generiere Abrechnung für dieses Jahr”) or last year (“Generiere Abrechnung für letztes Jahr”):</p>
+<img alt="_images/Invoice_%282%29.png" class="align-center" src="_images/Invoice_%282%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Then, click on “Ausführen” to execute the generation:</p>
+<img alt="_images/Invoice_%283%29.png" class="align-center" src="_images/Invoice_%283%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now, you get redirected to the admin invoice page.
+There are messages at the top of the window indicating if the creation was successful or not.
+If not, the exception gets shown in another error message containing the exception text:</p>
+<img alt="_images/Invoice_%284%29.png" class="align-center" src="_images/Invoice_%284%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In this example one creation threw an exception, because the user “guest_user” has no relating UserInfo object and thus it was not possible to create an invoice for him.</p>
+</section>
+<section id="recreate-invoice">
+<h3>Recreate Invoice<a class="headerlink" href="#recreate-invoice" title="Link to this heading"></a></h3>
+<p>If you are not satisfied with the first version of an invoice, you got the option to recreate them, or better said, create a new version, because the old one will not get deleted.</p>
+<p>To recreate an invoice navigate to the admin invoice page and check the invoices you want to recreate:</p>
+<img alt="_images/Invoice_%285%29.png" class="align-center" src="_images/Invoice_%285%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Next, select the option “Erstelle Abrechnungen neu” from the dop-down menu and click on “Ausführen” to execute the recreation:</p>
+<img alt="_images/Invoice_%286%29.png" class="align-center" src="_images/Invoice_%286%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now you get redirected back to the invoice admin page. Here a message will show, indicating if your recreation was successful:</p>
+<img alt="_images/Invoice_%287%29.png" class="align-center" src="_images/Invoice_%287%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="send-email">
+<h3>Send Email<a class="headerlink" href="#send-email" title="Link to this heading"></a></h3>
+<p>To send an email to a user with the invoice attached, navigate to the admin invoice page and check the invoices you want to send an email for, select “Versende E-Mails” from the drop-down menu and click on “Ausführen”:</p>
+<img alt="_images/Invoice_%288%29.png" class="align-center" src="_images/Invoice_%288%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If the email was sent successfully, the column “E-Mail gesendet” will show a green checkmark instead of a red cross:</p>
+<img alt="_images/Invoice_%289%29.png" class="align-center" src="_images/Invoice_%289%29.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="export-year-end-statements-to-csv">
+<h3>Export Year End Statements to CSV<a class="headerlink" href="#export-year-end-statements-to-csv" title="Link to this heading"></a></h3>
+<p>To export year end statements to a CSV file, navigate to the admin year end statements page and then:</p>
+<ul class="simple">
+<li><p>check the year end statements you want to export</p></li>
+<li><p>select “Exportiere ausgewählte Jahresendabrechnungen als CSV” from the drop-down menu</p></li>
+<li><p>click on “Ausführen”</p></li>
+</ul>
+<img alt="_images/YearEndStatement.png" class="align-center" src="_images/YearEndStatement.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now the download of the requested CSV-file should start automatically.</p>
+</section>
+</section>
+<section id="export-orders-to-csv">
+<h2>Export Orders to CSV<a class="headerlink" href="#export-orders-to-csv" title="Link to this heading"></a></h2>
+<p>To export orders to a CSV file, navigate to the admin order page and then:</p>
+<ul class="simple">
+<li><p>check the orders you want to export</p></li>
+<li><p>select “Exportiere ausgewählte Bestellungen als CSV” from the drop-down menu</p></li>
+<li><p>click on “Ausführen”</p></li>
+</ul>
+<img alt="_images/Order.png" class="align-center" src="_images/Order.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now the download of the requested CSV-file should start automatically.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage_instructions_bedienungsanleitung.html" class="btn btn-neutral float-left" title="Usage Instructions / Bedienungsanleitung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bedienungsanleitung.html" class="btn btn-neutral float-right" title="Bedienungsanleitung" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Christopher Trautmann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

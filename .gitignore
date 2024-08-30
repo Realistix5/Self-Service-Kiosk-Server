@@ -1,0 +1,15 @@
+/.idea
+/mysite/self_service_kiosk/migrations/
+/mysite/.env
+/mysite/logs/
+/mysite/invoices
+/mysite/qr_codes
+**/__pycache__/
+/mysite/static/
+/mysite/venv/
+/log_compiler/sessions.csv
+/log_compiler/requests_full.log
+/mysite/build/
+/mysite/make.bat
+/mysite/Makefile
+/mysite/.coverage

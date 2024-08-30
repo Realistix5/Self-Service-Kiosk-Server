@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Documentation &mdash; Self-Service-Kiosk Django  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Bedienungsanleitung" href="bedienungsanleitung.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Self-Service-Kiosk Django
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup_instructions.html">Setup Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage_instructions_bedienungsanleitung.html">Usage Instructions / Bedienungsanleitung</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Technical Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#models">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.Category"><code class="docutils literal notranslate"><span class="pre">Category</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.Invoice"><code class="docutils literal notranslate"><span class="pre">Invoice</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.LoginToken"><code class="docutils literal notranslate"><span class="pre">LoginToken</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#self_service_kiosk.models.LoginToken.set_valid_until"><code class="docutils literal notranslate"><span class="pre">LoginToken.set_valid_until()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.MenuItem"><code class="docutils literal notranslate"><span class="pre">MenuItem</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#self_service_kiosk.models.Order.get_total_price"><code class="docutils literal notranslate"><span class="pre">Order.get_total_price()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.OrderItem"><code class="docutils literal notranslate"><span class="pre">OrderItem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#self_service_kiosk.models.OrderItem.get_price"><code class="docutils literal notranslate"><span class="pre">OrderItem.get_price()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#self_service_kiosk.models.OrderItem.save"><code class="docutils literal notranslate"><span class="pre">OrderItem.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.PasswordResetToken"><code class="docutils literal notranslate"><span class="pre">PasswordResetToken</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#self_service_kiosk.models.PasswordResetToken.set_valid_until"><code class="docutils literal notranslate"><span class="pre">PasswordResetToken.set_valid_until()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.Payment"><code class="docutils literal notranslate"><span class="pre">Payment</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.RegistrationToken"><code class="docutils literal notranslate"><span class="pre">RegistrationToken</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#self_service_kiosk.models.RegistrationToken.set_valid_until"><code class="docutils literal notranslate"><span class="pre">RegistrationToken.set_valid_until()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.UserInfo"><code class="docutils literal notranslate"><span class="pre">UserInfo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.models.YearEndStatement"><code class="docutils literal notranslate"><span class="pre">YearEndStatement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#views">Views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.account_details"><code class="docutils literal notranslate"><span class="pre">account_details()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.all_products_view"><code class="docutils literal notranslate"><span class="pre">all_products_view()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.cart"><code class="docutils literal notranslate"><span class="pre">cart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.confirm_order"><code class="docutils literal notranslate"><span class="pre">confirm_order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.forgot_password"><code class="docutils literal notranslate"><span class="pre">forgot_password()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.guest_login"><code class="docutils literal notranslate"><span class="pre">guest_login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.help_page"><code class="docutils literal notranslate"><span class="pre">help_page()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.invoice_view"><code class="docutils literal notranslate"><span class="pre">invoice_view()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.login_with_token"><code class="docutils literal notranslate"><span class="pre">login_with_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.order_detail"><code class="docutils literal notranslate"><span class="pre">order_detail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.order_success"><code class="docutils literal notranslate"><span class="pre">order_success()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.payment_problem"><code class="docutils literal notranslate"><span class="pre">payment_problem()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.process_payment"><code class="docutils literal notranslate"><span class="pre">process_payment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.qr_code_view"><code class="docutils literal notranslate"><span class="pre">qr_code_view()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.send_feedback"><code class="docutils literal notranslate"><span class="pre">send_feedback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.set_password"><code class="docutils literal notranslate"><span class="pre">set_password()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.update_quantity"><code class="docutils literal notranslate"><span class="pre">update_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.user_login"><code class="docutils literal notranslate"><span class="pre">user_login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self_service_kiosk.views.user_logout"><code class="docutils literal notranslate"><span class="pre">user_logout()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-tests">Unit Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-unit-tests">Run Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-tests-with-coverage">Run Tests with Coverage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-this-documentation">Building this documentation</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Self-Service-Kiosk Django</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Technical Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/technical_documentation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="technical-documentation">
+<h1>Technical Documentation<a class="headerlink" href="#technical-documentation" title="Link to this heading"></a></h1>
+<p>This chapter provides a technical documentation of the Self-Service-Kiosk Django application. It is structured in the following sections:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#models">Models</a></p></li>
+<li><p><a class="reference internal" href="#views">Views</a></p></li>
+<li><p><a class="reference internal" href="#unit-tests">Unit Tests</a></p></li>
+<li><p><a class="reference internal" href="#building-this-documentation">Building this documentation</a></p></li>
+</ul>
+<section id="models">
+<span id="id1"></span><h2>Models<a class="headerlink" href="#models" title="Link to this heading"></a></h2>
+<dl class="py class" id="module-self_service_kiosk.models">
+<dt class="sig sig-object py" id="self_service_kiosk.models.Category">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">Category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_category</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#Category"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.Category" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>category_name</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – Name</p></li>
+<li><p><strong>order_number</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.1)"><em>IntegerField</em></a>) – Ordnungsnummer</p></li>
+<li><p><strong>event_category</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BooleanField" title="(in Django v5.1)"><em>BooleanField</em></a>) – Event Kategorie</p></li>
+</ul>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>menuitem</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a>) – All Menüpunkte of this Kategorie (related name of <code class="xref py py-attr docutils literal notranslate"><span class="pre">category</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.Invoice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">Invoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_sent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_body_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_body_html</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#Invoice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.Invoice" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>year</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.1)"><em>IntegerField</em></a>) – Jahr</p></li>
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.1)"><em>IntegerField</em></a>) – Versions-Nummer</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Erstellt</p></li>
+<li><p><strong>pdf_path</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.FileField" title="(in Django v5.1)"><em>FileField</em></a>) – PDF Pfad</p></li>
+<li><p><strong>email_sent</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BooleanField" title="(in Django v5.1)"><em>BooleanField</em></a>) – E-Mail gesendet</p></li>
+<li><p><strong>email_subject</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – E-Mail Betreff</p></li>
+<li><p><strong>email_body_text</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.1)"><em>TextField</em></a>) – E-Mail Text</p></li>
+<li><p><strong>email_body_html</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.TextField" title="(in Django v5.1)"><em>TextField</em></a>) – E-Mail Text-HTML</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">invoice</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.LoginToken">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">LoginToken</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_until</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#LoginToken"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.LoginToken" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TokenBase</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>token</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.UUIDField" title="(in Django v5.1)"><em>UUIDField</em></a>) – Token</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Erstellt</p></li>
+<li><p><strong>valid_until</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Gültig bis</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.OneToOneField" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneToOneField</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">logintoken</span></code>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="self_service_kiosk.models.LoginToken.set_valid_until">
+<span class="sig-name descname"><span class="pre">set_valid_until</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#LoginToken.set_valid_until"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.LoginToken.set_valid_until" title="Link to this definition"></a></dt>
+<dd><p>Sets the <code class="xref py py-attr docutils literal notranslate"><span class="pre">valid_until</span></code> to one year after creation.
+:return: 0 on success.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.MenuItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">MenuItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picture</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#MenuItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.MenuItem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – Name</p></li>
+<li><p><strong>price</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DecimalField" title="(in Django v5.1)"><em>DecimalField</em></a>) – Preis</p></li>
+<li><p><strong>picture</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ImageField" title="(in Django v5.1)"><em>ImageField</em></a>) – Bild</p></li>
+<li><p><strong>order_number</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.1)"><em>IntegerField</em></a>) – Ordnungsnummer</p></li>
+<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BooleanField" title="(in Django v5.1)"><em>BooleanField</em></a>) – Versteckt</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>category</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#self_service_kiosk.models.Category" title="self_service_kiosk.models.Category"><code class="xref py py-class docutils literal notranslate"><span class="pre">Category</span></code></a>) – Kategorie (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">menuitem</span></code>)</p>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>orderitem</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#self_service_kiosk.models.OrderItem" title="self_service_kiosk.models.OrderItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderItem</span></code></a>) – All Bestellungsteile of this Menüpunkt (related name of <code class="xref py py-attr docutils literal notranslate"><span class="pre">menu_item</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.Order">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#Order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.Order" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Erstellt</p></li>
+<li><p><strong>paid</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BooleanField" title="(in Django v5.1)"><em>BooleanField</em></a>) – Bezahlt</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code>)</p>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>orderitem</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#self_service_kiosk.models.OrderItem" title="self_service_kiosk.models.OrderItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderItem</span></code></a>) – All Bestellungsteile of this Bestellung (related name of <code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code>)</p></li>
+<li><p><strong>payment</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#self_service_kiosk.models.Payment" title="self_service_kiosk.models.Payment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Payment</span></code></a>) – All Zahlungen of this Bestellung (related name of <code class="xref py py-attr docutils literal notranslate"><span class="pre">order</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="self_service_kiosk.models.Order.get_total_price">
+<span class="sig-name descname"><span class="pre">get_total_price</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#Order.get_total_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.Order.get_total_price" title="Link to this definition"></a></dt>
+<dd><p>Summarizes the prices of all <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A Decimal with the total price of the <a class="reference internal" href="#self_service_kiosk.models.Order" title="self_service_kiosk.models.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.OrderItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">OrderItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">menu_item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_at_purchase</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#OrderItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.OrderItem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.PositiveIntegerField" title="(in Django v5.1)"><em>PositiveIntegerField</em></a>) – Menge</p></li>
+<li><p><strong>price_at_purchase</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DecimalField" title="(in Django v5.1)"><em>DecimalField</em></a>) – Preis beim Kauf</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#self_service_kiosk.models.Order" title="self_service_kiosk.models.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a>) – Bestellung (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">orderitem</span></code>)</p></li>
+<li><p><strong>menu_item</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a>) – Menüpunkt (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">orderitem</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="self_service_kiosk.models.OrderItem.get_price">
+<span class="sig-name descname"><span class="pre">get_price</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#OrderItem.get_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.OrderItem.get_price" title="Link to this definition"></a></dt>
+<dd><p>Multiplicates <code class="xref py py-attr docutils literal notranslate"><span class="pre">quantity</span></code> with <code class="xref py py-attr docutils literal notranslate"><span class="pre">price_at_purchase</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The price of the <a class="reference internal" href="#self_service_kiosk.models.OrderItem" title="self_service_kiosk.models.OrderItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderItem</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="self_service_kiosk.models.OrderItem.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#OrderItem.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.OrderItem.save" title="Link to this definition"></a></dt>
+<dd><p>Overrides the normal <code class="xref py py-func docutils literal notranslate"><span class="pre">save()</span></code> method of <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to set <code class="xref py py-attr docutils literal notranslate"><span class="pre">price_at_purchase</span></code> according the <code class="xref py py-attr docutils literal notranslate"><span class="pre">price</span></code> of relating <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> – Gets passed to normal <code class="xref py py-func docutils literal notranslate"><span class="pre">save()</span></code> method of <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.</p></li>
+<li><p><strong>kwargs</strong> – Gets passed to normal <code class="xref py py-func docutils literal notranslate"><span class="pre">save()</span></code> method of <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 on success.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.PasswordResetToken">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">PasswordResetToken</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_until</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#PasswordResetToken"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.PasswordResetToken" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TokenBase</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>token</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.UUIDField" title="(in Django v5.1)"><em>UUIDField</em></a>) – Token</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Erstellt</p></li>
+<li><p><strong>valid_until</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Gültig bis</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.OneToOneField" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneToOneField</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">passwordresettoken</span></code>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="self_service_kiosk.models.PasswordResetToken.set_valid_until">
+<span class="sig-name descname"><span class="pre">set_valid_until</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#PasswordResetToken.set_valid_until"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.PasswordResetToken.set_valid_until" title="Link to this definition"></a></dt>
+<dd><p>Sets the <code class="xref py py-attr docutils literal notranslate"><span class="pre">valid_until</span></code> to one day after creation.
+:return: 0 on success.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.Payment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">Payment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yearEndStatement</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#Payment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.Payment" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.AutoField" title="(in Django v5.1)"><em>AutoField</em></a>) – Primary key: Id</p></li>
+<li><p><strong>transaction_id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – TransaktionsID</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Erstellt</p></li>
+<li><p><strong>amount</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DecimalField" title="(in Django v5.1)"><em>DecimalField</em></a>) – Betrag</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">payment</span></code>)</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#self_service_kiosk.models.Order" title="self_service_kiosk.models.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a>) – Bestellung (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">payment</span></code>)</p></li>
+<li><p><strong>yearEndStatement</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference internal" href="#self_service_kiosk.models.YearEndStatement" title="self_service_kiosk.models.YearEndStatement"><code class="xref py py-class docutils literal notranslate"><span class="pre">YearEndStatement</span></code></a>) – Jahresendabrechnung (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">payment</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.RegistrationToken">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">RegistrationToken</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_until</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#RegistrationToken"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.RegistrationToken" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TokenBase</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>token</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.UUIDField" title="(in Django v5.1)"><em>UUIDField</em></a>) – Token</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Erstellt</p></li>
+<li><p><strong>valid_until</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Gültig bis</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.OneToOneField" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneToOneField</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">registrationtoken</span></code>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="self_service_kiosk.models.RegistrationToken.set_valid_until">
+<span class="sig-name descname"><span class="pre">set_valid_until</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#RegistrationToken.set_valid_until"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.RegistrationToken.set_valid_until" title="Link to this definition"></a></dt>
+<dd><p>Sets the <code class="xref py py-attr docutils literal notranslate"><span class="pre">valid_until</span></code> to one day after creation.
+:return: 0 on success.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.UserInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">UserInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">street</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">city</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#UserInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.UserInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>gender</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – Geschlecht</p></li>
+<li><p><strong>street</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – Straße</p></li>
+<li><p><strong>city</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CharField" title="(in Django v5.1)"><em>CharField</em></a>) – Stadt</p></li>
+<li><p><strong>plz</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.1)"><em>IntegerField</em></a>) – PLZ</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.OneToOneField" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneToOneField</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">userinfo</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="self_service_kiosk.models.YearEndStatement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">self_service_kiosk.models.</span></span><span class="sig-name descname"><span class="pre">YearEndStatement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">changed_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_transferred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_amount</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/models.html#YearEndStatement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.models.YearEndStatement" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.BigAutoField" title="(in Django v5.1)"><em>BigAutoField</em></a>) – Primary key: ID</p></li>
+<li><p><strong>year</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.IntegerField" title="(in Django v5.1)"><em>IntegerField</em></a>) – Jahr</p></li>
+<li><p><strong>created_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Geändert</p></li>
+<li><p><strong>changed_at</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DateTimeField" title="(in Django v5.1)"><em>DateTimeField</em></a>) – Geändert</p></li>
+<li><p><strong>balance_transferred</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DecimalField" title="(in Django v5.1)"><em>DecimalField</em></a>) – Guthabenübertrag</p></li>
+<li><p><strong>invoice_amount</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DecimalField" title="(in Django v5.1)"><em>DecimalField</em></a>) – Rechnungsbetrag</p></li>
+</ul>
+</dd>
+</dl>
+<p>Relationship fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> to <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – Nutzer (related name: <code class="xref py py-attr docutils literal notranslate"><span class="pre">yearendstatement</span></code>)</p>
+</dd>
+</dl>
+<p>Reverse relationships:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>payment</strong> (Reverse <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey" title="(in Django v5.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> from <a class="reference internal" href="#self_service_kiosk.models.Payment" title="self_service_kiosk.models.Payment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Payment</span></code></a>) – All Zahlungen of this Jahresendabrechnung (related name of <code class="xref py py-attr docutils literal notranslate"><span class="pre">yearEndStatement</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="views">
+<span id="id2"></span><h2>Views<a class="headerlink" href="#views" title="Link to this heading"></a></h2>
+<dl class="py function" id="module-self_service_kiosk.views">
+<dt class="sig sig-object py" id="self_service_kiosk.views.account_details">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">account_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#account_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.account_details" title="Link to this definition"></a></dt>
+<dd><p>Displays a comprehensive summary of the logged-in user’s account details, including orders and payments made within the current year.
+This view is restricted to non-guest users, ensuring that sensitive financial data remains confidential.</p>
+<ul class="simple">
+<li><p>Filtering orders and payments specific to the user and the current year.</p></li>
+<li><p>Calculating the total unpaid amount across all orders.</p></li>
+<li><p>Determining if the total amount reflects a debit or credit balance.</p></li>
+</ul>
+<p>The view also adapts its response based on whether the request is coming from a WebView, enhancing compatibility with mobile apps or embedded browsers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering the account details page with order and payment information, or a simple HttpResponse denying access for guest users.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.all_products_view">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">all_products_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#all_products_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.all_products_view" title="Link to this definition"></a></dt>
+<dd><p>Loads and displays all <a class="reference internal" href="#self_service_kiosk.models.Category" title="self_service_kiosk.models.Category"><code class="xref py py-class docutils literal notranslate"><span class="pre">Category</span></code></a> objects along with their associated
+<a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a> objects for users, differentiated by the “event_user”. Categories
+and menu items are displayed based on user type and category event settings.</p>
+<p>For a normal user:
+- Only categories where <code class="xref py py-attr docutils literal notranslate"><span class="pre">event_category</span></code> is set to <cite>False</cite> are displayed.</p>
+<p>For the “event_user”:
+- Displays all categories, including those where <code class="xref py py-attr docutils literal notranslate"><span class="pre">event_category</span></code> is set to <cite>True</cite>.</p>
+<p>Hidden <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a> objects (where <code class="xref py py-attr docutils literal notranslate"><span class="pre">hidden</span></code> is <cite>True</cite>)
+are excluded from the display for all users.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering the all products page with dynamic content based on the user type and category settings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.cart">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">cart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#cart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.cart" title="Link to this definition"></a></dt>
+<dd><p>Displays the current user’s shopping cart. This view provides a detailed list of <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a> in the cart,
+including their quantities, prices, and the subtotal for each item. It calculates the total price of all items in the cart
+and allows users to adjust item quantities through POST requests.</p>
+<ul class="simple">
+<li><p>The cart contents are displayed with an option to update quantities or proceed to checkout.</p></li>
+<li><p>Adjustments made via POST requests update the cart session data and the view is refreshed to reflect these changes.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering the cart page with the possibility to modify quantities or proceed to checkout.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.confirm_order">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">confirm_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#confirm_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.confirm_order" title="Link to this definition"></a></dt>
+<dd><p>Processes the final step in confirming an order based on the presence of payment details. If payment details (like a transaction ID)
+are provided and validated, an <a class="reference internal" href="#self_service_kiosk.models.Order" title="self_service_kiosk.models.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> is created and marked as paid. Otherwise, the order is created
+but marked as not paid.</p>
+<ul class="simple">
+<li><p>The function checks for a “paid” query parameter in the request to determine if payment has been processed.</p></li>
+<li><p>An <a class="reference internal" href="#self_service_kiosk.models.Order" title="self_service_kiosk.models.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> instance is created with a status reflecting the payment state.</p></li>
+<li><p>On successful order creation, the user is redirected to a success page with details about the order status.</p></li>
+<li><p>In the absence of payment confirmation, the order is still processed but marked as pending, and appropriate actions are taken based on the business logic.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Redirects to a success or status page detailing the order outcome.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.forgot_password">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">forgot_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#forgot_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.forgot_password" title="Link to this definition"></a></dt>
+<dd><p>Allows users to request a password reset. On GET, it displays the password reset form. On POST, it verifies the existence
+of a user by username and sends a password reset link if the user is active.</p>
+<ul class="simple">
+<li><p>The link is generated using a <cite>PasswordResetToken</cite> which is sent to the user’s registered email.</p></li>
+<li><p>Appropriate success or error messages are displayed based on the user’s existence and their account status.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering the password reset page, or redirecting with a status message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.guest_login">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">guest_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#guest_login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.guest_login" title="Link to this definition"></a></dt>
+<dd><p>Provides a login mechanism for a guest user with a hardcoded username. This function checks if the hardcoded guest user
+exists and logs them in, redirecting to the all products page. If the guest user cannot be authenticated, an error message is displayed.</p>
+<ul class="simple">
+<li><p>This is intended for limited functionality access without creating a personal account.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect to the all products page on successful login, or the login page with an error message on failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.help_page">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">help_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#help_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.help_page" title="Link to this definition"></a></dt>
+<dd><p>Renders a help page where users can submit feedback via a form. This POST endpoint handles the form submission, validates
+the feedback, and sends it via email if valid. A confirmation message is displayed after successful submission.</p>
+<ul class="simple">
+<li><p>Enhances user support by providing a direct method for feedback submission and immediate response handling.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object either displaying the form with success confirmation or re-rendering the form for further input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.invoice_view">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">invoice_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#invoice_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.invoice_view" title="Link to this definition"></a></dt>
+<dd><p>Securely delivers invoice files to authorized users. Validates if the requested file exists and checks if the user has
+the appropriate permissions to access it. This view handles the display or download of invoices stored within a secure directory.</p>
+<ul class="simple">
+<li><p>Ensures that access to invoice files is restricted to authorized personnel, preventing unauthorized data access.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>file_path</strong> – The relative path to the invoice file intended for access.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A FileResponse allowing the authorized download of the invoice, or an HttpResponseForbidden if access is denied.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.login_with_token">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">login_with_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#login_with_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.login_with_token" title="Link to this definition"></a></dt>
+<dd><p>Facilitates user login using a secure token, typically sent to the user via email or embedded in a QR code. Validates
+the token and logs the user in if the token is valid and not expired.</p>
+<ul class="simple">
+<li><p>This provides an alternative login method that can be more secure and convenient for users, especially for single-use or time-sensitive sessions.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>token</strong> – The token used for the user login attempt.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect to the main index page on successful login or back to the login page with an error message on token validation failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.order_detail">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">order_detail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#order_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.order_detail" title="Link to this definition"></a></dt>
+<dd><p>Displays detailed information about an order specified by the order_id. This view checks if the logged-in user has the
+appropriate permissions to view the order details. The view includes comprehensive information about the order including
+items, quantities, and prices at the time of purchase.</p>
+<ul class="simple">
+<li><p>Provides a detailed breakdown of the order to support customer service and order management operations.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>order_id</strong> – The identifier of the order to be detailed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering the detailed view of the order if access is permitted, or an HttpResponseForbidden
+if the user is not authorized to view the details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.order_success">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">order_success</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#order_success"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.order_success" title="Link to this definition"></a></dt>
+<dd><p>Displays a success message to the user after an order has been processed, based on the provided case parameter which indicates
+the specific scenario of the order process. The function handles different cases:</p>
+<ul class="simple">
+<li><p>Case 1: Order was successfully placed but was not paid directly or fully.</p></li>
+<li><p>Case 2: Order was placed and payment was successfully processed.</p></li>
+<li><p>Other cases may represent various error or informational states related to order processing.</p></li>
+</ul>
+<p>The appropriate message is displayed to the user based on the case parameter, providing feedback on the order status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>case</strong> – An integer representing the outcome scenario of the order process.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering the order success page with a contextual message based on the case.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.payment_problem">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">payment_problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#payment_problem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.payment_problem" title="Link to this definition"></a></dt>
+<dd><p>Handles errors during payment processing by interpreting a specific error code passed as a query parameter. This view
+renders a detailed error message explaining the potential cause and suggesting next steps or remedies.</p>
+<ul class="simple">
+<li><p>Each error code corresponds to a particular payment issue, which is explained to the user.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object rendering a page that describes the payment error based on the provided code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.process_payment">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">process_payment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#process_payment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.process_payment" title="Link to this definition"></a></dt>
+<dd><p>Manages the post-payment processing by verifying the payment details such as transaction ID and payment type. Based on
+the verification, it either completes an order or credits an account, handling both “order” and “credit” payment types.</p>
+<ul class="simple">
+<li><p>Ensures that payments are processed securely and correctly, updates order status, and handles account credits.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect to appropriate views depending on the payment outcome and type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.qr_code_view">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">qr_code_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#qr_code_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.qr_code_view" title="Link to this definition"></a></dt>
+<dd><p>Processes a QR code value submitted via POST. Depending on the prefix in the QR code, it redirects to different
+functionalities such as logging in, resetting a password, or handling user registration.</p>
+<ul class="simple">
+<li><p>This method ensures flexibility and user-friendly interactions by using QR codes to initiate complex workflows with simple scans.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect based on the decoded action from the QR code or a JsonResponse indicating an error if the QR code action is invalid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.register">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.register" title="Link to this definition"></a></dt>
+<dd><p>Manages user registration through both GET and POST requests. On a GET request, it renders the registration form. On a POST
+request, it processes the provided user data to create a new user account and associated
+<a class="reference internal" href="#self_service_kiosk.models.RegistrationToken" title="self_service_kiosk.models.RegistrationToken"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegistrationToken</span></code></a>. Upon successful creation, a confirmation email is sent.</p>
+<ul class="simple">
+<li><p>The email is sent using the <a class="reference internal" href="#self_service_kiosk.models.RegistrationToken" title="self_service_kiosk.models.RegistrationToken"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegistrationToken</span></code></a> if the account is successfully created.</p></li>
+<li><p>Appropriate success or error messages are displayed based on the outcome.</p></li>
+<li><p>The user is redirected to the login page after registration or back to the registration form if errors occur.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An HttpResponse object either rendering the registration page or redirecting to the login page with a message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.send_feedback">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">send_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#send_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.send_feedback" title="Link to this definition"></a></dt>
+<dd><p>Receives feedback as a JSON payload via a POST request, processes it, and forwards the feedback via email. This function
+validates the JSON structure, extracts feedback details, and uses an email service to send the feedback to a specified recipient.</p>
+<ul class="simple">
+<li><p>Facilitates asynchronous feedback collection from users, enhancing user engagement and support.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A JsonResponse indicating the success or failure of the feedback submission.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.set_password">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#set_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.set_password" title="Link to this definition"></a></dt>
+<dd><p>Allows a user to set or reset their password using a valid token received via email. This view supports POST requests
+for form submission of the new password and uses Django’s <cite>SetPasswordForm</cite> for validation.</p>
+<ul class="simple">
+<li><p>The token’s validity is checked to ensure it’s not expired and matches the user.</p></li>
+<li><p>Upon successful password update, the token is invalidated to prevent reuse, and the user is redirected to the login page.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>token</strong> – The token used for identifying the valid password reset request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect to the login page upon successful password reset, or the same form with error messages if unsuccessful.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.update_quantity">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">update_quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#update_quantity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.update_quantity" title="Link to this definition"></a></dt>
+<dd><p>Dynamically updates the quantity of a specific <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a> in the user’s cart via an AJAX call.
+This view handles quantity updates on the client side, immediately reflecting changes without reloading the page.</p>
+<ul class="simple">
+<li><p>Validates the new quantity and updates the cart session data accordingly.</p></li>
+<li><p>If the quantity is set to zero, the item is removed from the cart.</p></li>
+<li><p>Returns a JsonResponse indicating the success or failure of the update, including the new quantity or a removal confirmation.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The HTTP request object.</p></li>
+<li><p><strong>item_id</strong> – The ID of the <a class="reference internal" href="#self_service_kiosk.models.MenuItem" title="self_service_kiosk.models.MenuItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">MenuItem</span></code></a> whose quantity is to be updated.</p></li>
+<li><p><strong>quantity</strong> – The new quantity to be set; if zero, the item is removed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A JsonResponse indicating the outcome of the operation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.user_login">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">user_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#user_login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.user_login" title="Link to this definition"></a></dt>
+<dd><p>Handles user authentication with a username and password submitted through POST. If successful, the user is logged in
+and redirected to the all products page. If unsuccessful, the login page is re-rendered with an error message.</p>
+<ul class="simple">
+<li><p>If a GET request is detected with credentials, those are also used to attempt a login.</p></li>
+<li><p>Utilizes Django’s built-in <cite>authenticate</cite> and <cite>login</cite> functions to manage user sessions and security.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect to the all products page upon successful login, or the login page with an error message on failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="self_service_kiosk.views.user_logout">
+<span class="sig-prename descclassname"><span class="pre">self_service_kiosk.views.</span></span><span class="sig-name descname"><span class="pre">user_logout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/self_service_kiosk/views.html#user_logout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#self_service_kiosk.views.user_logout" title="Link to this definition"></a></dt>
+<dd><p>Handles the logout process for the current user. This function terminates the user session effectively logging out the user,
+and redirects them to the login page. This ensures that all session data is cleared and the user must re-authenticate to access
+protected resources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The HTTP request object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A redirect to the login page, ensuring the user session is cleanly terminated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="unit-tests">
+<span id="id3"></span><h2>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h2>
+<p>In this chapeter we will explain how to run the unit tests for the Self-Service-Kiosk Django application.</p>
+<p>The test concept for the Self-Service-Kiosk Django application is focused the views of the application.
+Each view has a corresponding test class in the <cite>self_service_kiosk/tests</cite> directory and is tested with multiple test cases. As a result the code coverage of <cite>views.py</cite> is 100%.</p>
+<p>The tests are written using the Django testing framework and are located in the <cite>self_service_kiosk/tests</cite> directory.</p>
+<section id="run-unit-tests">
+<h3>Run Unit Tests<a class="headerlink" href="#run-unit-tests" title="Link to this heading"></a></h3>
+<p>To simply run all unit tests, execute the following command in the parent <cite>mysite</cite> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="run-tests-with-coverage">
+<h3>Run Tests with Coverage<a class="headerlink" href="#run-tests-with-coverage" title="Link to this heading"></a></h3>
+<p>To run all unit tests and get a coverage html report you need to first install the <cite>coverage</cite> Python package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>coverage
+</pre></div>
+</div>
+<p>Then you can run the unit tests with coverage and generate the html report with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>run<span class="w"> </span>--source<span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
+coverage<span class="w"> </span>html
+</pre></div>
+</div>
+<p>After executing the above commands, you can find the coverage html report in the <cite>htmlcov</cite> directory.</p>
+</section>
+</section>
+<section id="building-this-documentation">
+<span id="id4"></span><h2>Building this documentation<a class="headerlink" href="#building-this-documentation" title="Link to this heading"></a></h2>
+<p>If you want to build this documentation for yourself, you need to install the <cite>sphinx</cite> Python package and the <cite>spinx</cite> extensions used for this project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx_rtd_theme<span class="w"> </span>sphinxcontrib_django
+</pre></div>
+</div>
+<p>Then you can build the documentation by executing the following command in the <cite>mysite</cite> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span><span class="nb">source</span><span class="w"> </span>build
+</pre></div>
+</div>
+<p>After executing the above command, you can find the built documentation in the <cite>build</cite> directory.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bedienungsanleitung.html" class="btn btn-neutral float-left" title="Bedienungsanleitung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Christopher Trautmann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

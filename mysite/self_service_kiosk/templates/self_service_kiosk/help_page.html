@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de-de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hilfe Seite</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'self_service_kiosk/pre_login.css' %}">
+    <style>
+        html, body {
+            align-items: unset;
+        }
+    </style>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function sendFeedback(event) {
+            event.preventDefault();
+            const feedbackText = document.getElementById('feedback_text').value;
+            const feedbackSender = document.getElementById('feedback_sender').value;
+            const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+            fetch("{% url 'self-service-kiosk:send_feedback' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    feedback_text: feedbackText,
+                    feedback_sender: feedbackSender
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('feedback-form').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                } else {
+                    alert('Fehler beim Senden des Feedbacks.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body style="margin: 20px; display: block; text-align: left; height: auto;">
+    <button onclick="history.back()" style="padding: 10px 20px; margin 20px">Zurück</button>
+    <h1>Hilfe-Seite</h1>
+    <p>Willkommen auf der Hilfe Seite! Diese Seite befindet sich momentan noch im Aufbau.</p>
+    <p>Falls du Fragen, oder Feedback hast, schicke diese gerne direkt an den Entwickler, indem du das folgende Formular absendest.</p>
+    <p>Jedes Feedback ist gerne gesehen!</p>
+
+    <div id="success-message" style="display: none; padding-top: 20px; color: green; font-size: 20px">
+        <p><b>Vielen Dank für dein Feedback!</b></p>
+    </div>
+
+    <div id="feedback-form">
+        <form onsubmit="sendFeedback(event)">
+            {% csrf_token %}
+            <label for="feedback_text">Feedback:</label><br>
+            <textarea id="feedback_text" name="feedback_text" rows="10" cols="50" required></textarea><br>
+            <label for="feedback_sender">Absender (optional):</label><br>
+            <input id="feedback_sender" name="feedback_sender"><br><br>
+            <input type="submit" value="Feedback senden">
+        </form>
+    </div>
+</body>
+</html>

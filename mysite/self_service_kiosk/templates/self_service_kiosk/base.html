@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Platzhalter{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'self_service_kiosk/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="footer-nav">
+        <ul>
+            <li><a href="{% url 'self-service-kiosk:all_products' %}" class="rounded-button">Alle Produkte</a></li>
+            <li><a href="{% url 'self-service-kiosk:cart' %}" class="rounded-button" style="background-color: #0e7a0e;">Warenkorb</a></li>
+            {% if user.username != "guest_user" %}
+                <li><a href="{% url 'self-service-kiosk:account_details' %}" class="rounded-button">Kontoübersicht</a></li>
+            {% endif %}
+            <li><a href="{% url 'self-service-kiosk:logout' %}" class="rounded-button" style="background-color: #880000;">Ausloggen</a></li>
+        </ul>
+    </div>
+    </footer>
+    <a href="{% url 'self-service-kiosk:help_page' %}" class="help-button">?</a>
+</body>
+</html>

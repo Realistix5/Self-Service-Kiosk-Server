@@ -1,0 +1,24 @@
+{% extends 'self_service_kiosk/base.html' %}
+
+{% block title %}{{ category.category_name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ category.category_name }}</h1>
+    <div class="items-container">
+        {% for item in category.menuitem_set.all %}
+            <a class="link-box" href="{% url 'self-service-kiosk:product_detail' item.id %}">
+                <div class="item-box">
+                    {% if item.picture %}
+                        <div class="item-image" style="background-image: url({{ item.picture.url }})"></div>
+                    {% else %}
+                        <div class="no-image-placeholder"></div>
+                    {% endif %}
+                    <div class="item-details">
+                        <h2>{{ item.name }}</h2>
+                        <p>{{ item.price }} €</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

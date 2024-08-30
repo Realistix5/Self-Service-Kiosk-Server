@@ -1,0 +1,103 @@
+{% extends 'self_service_kiosk/pre_login_base.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="left-box">
+            <h2>Mitglieder Login</h2>
+            <div class="links">
+                <a href="#" id="showQrScanner" class="qr-link">
+                    <img src="{% static 'images/qr_code_self-service-kiosk.png' %}" alt="QR-Code" class="qr-icon">
+                    <span class="qr-text"><b>QR-Code verwenden</b></span>
+                </a>
+                <a href="#" id="showLoginForm" class="login-link">Mitgliedsnr und Passwort verwenden</a>
+                <a href="{% url 'self-service-kiosk:forgot_password' %}" class="forgot-password">Passwort vergessen?</a>
+                <a href="{% url 'self-service-kiosk:register' %}" class="register-link">Noch kein Konto?</a>
+            </div>
+        </div>
+        <div class="form-container" id="formContainer" style="display: none;">
+            <form id="loginForm" method="post">
+                {% csrf_token %}
+                <label for="username">Mitgliedsnummer:</label>
+                <p><input type="text" id="username" name="username"></p>
+                <label for="password">Passwort:</label>
+                <p><input type="password" id="password" name="password"></p>
+                <input type="submit" value="Anmelden">
+            </form>
+        </div>
+        <div class="video-container" id="videoContainer" style="display: none;">
+            <video id="video"></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <form id="qrForm" action="/qr/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="qr_code" id="qrCodeInput">
+            </form>
+        </div>
+        <div class="right-box">
+            <a href="{% url 'self-service-kiosk:guest_login' %}">
+                <div class="overlay">
+                    <h2>Kein Mitglied?</h2>
+                    <h3>Dann hier klicken, um als Gast fortzufahren.</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('showQrScanner').addEventListener('click', function(event) {
+            event.preventDefault();
+            toggleForms('qr');
+        });
+
+        document.getElementById('showLoginForm').addEventListener('click', function(event) {
+            event.preventDefault();
+            toggleForms('login');
+        });
+
+        function toggleForms(formType) {
+            const loginForm = document.getElementById('loginForm');
+            const qrForm = document.getElementById('qrForm');
+            const formContainer = document.getElementById('formContainer');
+            const videoContainer = document.getElementById('videoContainer');
+
+            if (formType === 'qr') {
+                formContainer.style.display = 'none';
+                qrForm.style.display = 'block';
+                videoContainer.style.display = 'block';
+                startCamera();
+            } else {
+                formContainer.style.display = 'flex';
+                qrForm.style.display = 'none';
+                videoContainer.style.display = 'none';
+            }
+        }
+
+        async function startCamera() {
+            const codeReader = new ZXing.BrowserQRCodeReader();
+            const video = document.getElementById('video');
+            try {
+                const devices = await codeReader.listVideoInputDevices();
+                const selectedDeviceId = devices[0].deviceId;
+                codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+                    if (result) {
+                        document.getElementById('qrCodeInput').value = result.text;
+                        document.getElementById('qrForm').submit();
+                        codeReader.reset();
+                    }
+                    if (err && !(err instanceof ZXing.NotFoundException)) {
+                        console.error(err);
+                    }
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    </script>
+{% endblock content %}

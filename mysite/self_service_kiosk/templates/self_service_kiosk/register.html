@@ -1,0 +1,22 @@
+{% extends 'self_service_kiosk/pre_login_base.html' %}
+
+{% block title %}Registrierung{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="left-box">
+            <h2>Registrierung</h2>
+            <form action="{% url 'self-service-kiosk:register' %}" method="post">
+                {% csrf_token %}
+                Um ein neues Konto zu erstellen, bitte hier Ihre Mitgliedsnummer eingeben:<br><br>
+                <label for="mitgliedsnummer">Mitgliedsnummer:</label>
+                <input type="text" id="mitgliedsnummer" name="mitgliedsnummer"><br><br>
+                <input type="submit" value="Registrieren">
+            </form>
+            <div class="links">
+                <a href="{% url 'self-service-kiosk:login' %}"><b>Schon ein Konto? Hier anmelden</b></a>
+                <a href="{% url 'self-service-kiosk:forgot_password' %}">Bereits ein Konto, aber Passwort vergessen?</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

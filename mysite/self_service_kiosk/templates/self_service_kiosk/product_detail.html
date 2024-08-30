@@ -1,0 +1,23 @@
+{% extends 'self_service_kiosk/base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <!--suppress XmlDuplicatedId -->
+<h1>{{ product.name }}</h1>
+{% if product.picture %}
+    <div class="product-picture-large" style="background-image: url({{ product.picture.url }})"></div>
+{% endif %}
+<p>Preis: {{ product.price }} €</p>
+<form method="post">
+    {% csrf_token %}
+    <label for="quantity">Menge:</label>
+    {% if quantity == 0 %}
+        <input type="number" id="quantity" name="quantity" value="1" max="100" min="1">
+        <button type="submit">Artikel zum Warenkorb hinzufügen</button>
+    {% else %}
+        <input type="number" id="quantity" name="quantity" value="{{ quantity }}" max="100" min="0">
+        <button type="submit">Artikel im Warenkorb aktualisieren</button>
+    {% endif %}
+</form>
+{% endblock %}
