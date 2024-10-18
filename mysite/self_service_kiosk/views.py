@@ -272,7 +272,7 @@ def all_products_view(request):
     if request.user.username != "event_user":
         categories = Category.objects.all().filter(event_category=False).order_by("order_number")
     else:
-        categories = Category.objects.all().filter(event_category=True).order_by("order_number")
+        categories = Category.objects.all().order_by("-event_category", "order_number")
 
     # Hole den Warenkorb für die aktuelle Session
     cart_items = request.session.get('cart', {}).get('items', {})
@@ -499,7 +499,11 @@ def order_success(request, case):
         message = "Bestellung über "+amount+"€ erfolgreich platziert und bezahlt."
     else:
         message = "Unbekannter Fall."
-    return render(request, 'self_service_kiosk/order_success.html', {'message': message})
+
+    if request.user.username == "event_user":
+        return render(request, 'self_service_kiosk/order_success_no_logout.html', {'message': message})
+    else:
+        return render(request, 'self_service_kiosk/order_success.html', {'message': message})
 
 
 def qr_code_view(request):
