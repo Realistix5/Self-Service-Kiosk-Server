@@ -31,6 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DJANGO_DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
+    "127.0.0.1",  # Always allow localhost
     os.environ.get('DJANGO_ALLOWED_HOST')  # Allow the host specified in the .env file
 ]
 
