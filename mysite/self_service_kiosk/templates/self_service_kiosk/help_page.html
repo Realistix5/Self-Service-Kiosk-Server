@@ -10,6 +10,25 @@
         html, body {
             align-items: unset;
         }
+
+        .admin-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px; /* Macht den Button rund */
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 100; /* Stellt sicher, dass der Button immer sichtbar ist */
+        }
+
+        .admin-button:hover {
+            background-color: #45a049; /* Etwas dunkler bei Hover */
+        }
     </style>
     <script>
         function goBack() {
@@ -50,6 +69,7 @@
 </head>
 <body style="margin: 20px; display: block; text-align: left; height: auto;">
     <button onclick="history.back()" style="padding: 10px 20px; margin 20px">Zurück</button>
+    <a href="{% url 'admin:index' %}" class="admin-button">Admin / Management</a>
     <h1>Hilfe-Seite</h1>
     <p>Willkommen auf der Hilfe Seite! Diese Seite befindet sich momentan noch im Aufbau.</p>
     <p>Falls du Fragen, oder Feedback hast, schicke diese gerne direkt an den Entwickler, indem du das folgende Formular absendest.</p>
